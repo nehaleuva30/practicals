@@ -1,0 +1,70 @@
+import Foundation
+
+// Struct for Song
+struct Song {
+    var songName: String
+    var artist: String
+    var duration: Double   // in minutes
+}
+
+// Struct for Playlist
+struct Playlist {
+    var playlistName: String
+    var songs: [Song]
+    
+    var playlistDuration: Double {
+        return songs.reduce(0) { $0 + $1.duration }
+    }
+}
+
+// MAIN PROGRAM
+
+print("Enter Playlist Name:")
+let playlistName = readLine() ?? "My Playlist"
+
+var playlist = Playlist(playlistName: playlistName, songs: [])
+
+var continueAdding = true
+
+while continueAdding {
+    
+    print("\nEnter Song Name:")
+    let name = readLine() ?? "Unknown Song"
+    
+    print("Enter Artist Name:")
+    let artist = readLine() ?? "Unknown Artist"
+    
+    print("Enter Duration (in minutes):")
+    let duration = Double(readLine() ?? "0") ?? 0
+    
+    let song = Song(songName: name, artist: artist, duration: duration)
+    playlist.songs.append(song)
+    
+    // Print Playlist after each addition
+    print("\n--- Playlist: \(playlist.playlistName) ---")
+    
+    for (index, song) in playlist.songs.enumerated() {
+        print("\(index + 1). \(song.songName) | Artist: \(song.artist) | Duration: \(song.duration) mins")
+    }
+    
+    print("Total Playlist Duration: \(playlist.playlistDuration) mins")
+    
+    // Ask user to continue or exit
+    print("\nDo you want to add more songs? (yes/no):")
+    let choice = readLine()?.lowercased()
+    
+    if choice != "yes" {
+        continueAdding = false
+    }
+}
+
+// Final Output
+print("\n===== FINAL PLAYLIST =====")
+print("Playlist Name: \(playlist.playlistName)")
+
+for (index, song) in playlist.songs.enumerated() {
+    print("\(index + 1). \(song.songName) | Artist: \(song.artist) | Duration: \(song.duration) mins")
+}
+
+print("Total Duration: \(playlist.playlistDuration) mins")
+print("==========================")
