@@ -1,0 +1,16 @@
+func reverseNumber(_ number: Int) -> Int {
+    var num = number
+    var reversed = 0
+    
+    while num != 0 {
+        let digit = num % 10        // get last digit
+        reversed = reversed * 10 + digit
+        num /= 10                  // remove last digit
+    }
+    
+    return reversed
+}
+
+// Example
+let reversedResult = reverseNumber(123)
+print("Reversed Number:", reversedResult)
