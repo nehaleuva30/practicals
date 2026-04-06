@@ -1,0 +1,16 @@
+func countVowels(_ text: String) -> Int {
+    let vowels = "aeiouAEIOU"
+    var count = 0
+    
+    for char in text {
+        if vowels.contains(char) {
+            count += 1
+        }
+    }
+    
+    return count
+}
+
+// Example
+let vowelCount = countVowels("Hello World")
+print("Number of vowels:", vowelCount)
