@@ -1,1 +1,20 @@
+Model
 
+struct Joke: Codable {
+    let id: Int
+    let type: String
+    let setup: String
+    let punchline: String
+}
+
+Call
+func getJokes() {
+    APIService.shared.fetchData(url: "https://official-joke-api.appspot.com/jokes/random/25") { (result: Result<[Joke], Error>) in
+        switch result {
+        case .success(let jokes):
+            print(jokes)
+        case .failure(let error):
+            print(error)
+        }
+    }
+}
