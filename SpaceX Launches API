@@ -1,0 +1,19 @@
+Model:
+
+struct Launch: Codable {
+    let name: String
+    let date_utc: String
+}
+
+call:
+
+func getLaunches() {
+    APIService.shared.fetchData(url: "https://api.spacexdata.com/v4/launches") { (result: Result<[Launch], Error>) in
+        switch result {
+        case .success(let launches):
+            print(launches)
+        case .failure(let error):
+            print(error)
+        }
+    }
+}
