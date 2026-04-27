@@ -1,0 +1,23 @@
+Model:
+
+struct PokemonResponse: Codable {
+    let results: [Pokemon]
+}
+
+struct Pokemon: Codable {
+    let name: String
+    let url: String
+}
+
+Call:
+
+func getPokemon() {
+    APIService.shared.fetchData(url: "https://pokeapi.co/api/v2/pokemon/?limit=15") { (result: Result<PokemonResponse, Error>) in
+        switch result {
+        case .success(let response):
+            print(response.results)
+        case .failure(let error):
+            print(error)
+        }
+    }
+}
