@@ -1,0 +1,17 @@
+func removeDuplicates(_ nums: [Int]) -> [Int] {
+    var seen = Set<Int>()
+    var result: [Int] = []
+    
+    for num in nums {
+        if !seen.contains(num) {
+            seen.insert(num)
+            result.append(num)
+        }
+    }
+    
+    return result
+}
+
+// Example
+let arr = [1, 2, 2, 3, 4, 3, 5]
+print(removeDuplicates(arr))  // [1, 2, 3, 4, 5]
