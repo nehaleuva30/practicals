@@ -1,0 +1,24 @@
+Model:
+
+struct ValorantResponse: Codable {
+    let data: [Agent]
+}
+
+struct Agent: Codable {
+    let uuid: String
+    let displayName: String
+    let description: String
+}
+
+Call:
+
+func getAgents() {
+    APIService.shared.fetchData(url: "https://valorant-api.com/v1/agents") { (result: Result<ValorantResponse, Error>) in
+        switch result {
+        case .success(let response):
+            print(response.data)
+        case .failure(let error):
+            print(error)
+        }
+    }
+}
