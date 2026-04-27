@@ -1,0 +1,14 @@
+func rotateArray(_ nums: [Int], k: Int) -> [Int] {
+    let n = nums.count
+    guard n > 0 else { return nums }
+    
+    let k = k % n  // handle k > n
+    
+    let rotated = Array(nums[(n - k)..<n] + nums[0..<(n - k)])
+    return rotated
+}
+
+// Example
+let arr = [1, 2, 3, 4, 5]
+let result = rotateArray(arr, k: 2)
+print(result)  // [4, 5, 1, 2, 3]
