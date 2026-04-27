@@ -1,0 +1,20 @@
+func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
+    var map = [Int: Int]()  // value -> index
+    
+    for (index, num) in nums.enumerated() {
+        let complement = target - num
+        
+        if let foundIndex = map[complement] {
+            return [foundIndex, index]
+        }
+        
+        map[num] = index
+    }
+    
+    return [] // if no solution
+}
+
+// Example
+let nums = [2, 7, 11, 15]
+let target = 9
+print(twoSum(nums, target))  // [0, 1]
